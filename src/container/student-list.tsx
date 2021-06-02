@@ -7,7 +7,7 @@ export const StudentList = memo(() => {
 
   return (
     <main>
-      {result.map((data) => (
+      {result.slice(0, 100).map((data) => (
         <StudentCard key={data.id} {...data} />
       ))}
     </main>

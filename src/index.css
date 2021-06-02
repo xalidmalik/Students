@@ -21,6 +21,7 @@ code {
 main {
   overflow: auto;
   height: calc(100% - 8.5rem);
+  position: relative;
 }
 
 .app {

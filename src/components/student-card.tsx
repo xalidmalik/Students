@@ -3,7 +3,7 @@ import { useStudent } from "hooks/useStudentContext";
 import { useView } from "hooks/useView";
 import React, { memo, useState } from "react";
 import { container, highContainer, item } from "utils/animation";
-import { getAvarage, getFullname } from "utils/card-helper";
+import { getAvarage, getFullname } from "utils/helper";
 import { StudentType } from "utils/types";
 
 export const StudentCard = memo<StudentType>(

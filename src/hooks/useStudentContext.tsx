@@ -1,4 +1,4 @@
-import { createContext, Dispatch, FC, useContext } from "react";
+import { createContext, Dispatch, FC, useContext, useState } from "react";
 import { StudentType } from "utils/types";
 import { useStudentHandler } from "./useStudentHandler";
 
@@ -10,19 +10,23 @@ const StudentContext =
         isLoading: boolean;
         error: any;
         setStudents: Dispatch<React.SetStateAction<StudentType[]>>;
+        name: string;
+        setName: Dispatch<React.SetStateAction<string>>;
+        tag: string;
+        setTag: Dispatch<React.SetStateAction<string>>;
       }
     | undefined
   >(undefined);
 
-const StudentProvider: FC<{ tag: string; name: string }> = ({
-  children,
-  tag,
-  name,
-}) => {
+const StudentProvider: FC = ({ children }) => {
+  const [name, setName] = useState<string>("");
+  const [tag, setTag] = useState<string>("");
   const value = useStudentHandler({ tag, name });
 
   return (
-    <StudentContext.Provider value={value}>{children}</StudentContext.Provider>
+    <StudentContext.Provider value={{ ...value, name, setName, tag, setTag }}>
+      {children}
+    </StudentContext.Provider>
   );
 };
 
