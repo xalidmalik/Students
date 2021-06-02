@@ -32,9 +32,7 @@ export const useStudentHandler = ({
 
   useEffect(() => {
     const Searched = searchName(name, students);
-    console.log("name", Searched);
     const finded = searchTag(tag, Searched);
-    console.log("tag", finded);
 
     setResult(finded);
   }, [students, name, tag]);

@@ -21,6 +21,7 @@ export let searchName = (searchQuery: string, array: StudentType[]) => {
 };
 
 export let searchTag = (searchTag: string, array: StudentType[]) => {
+  // eslint-disable-next-line array-callback-return
   const finded = array.filter((data) => {
     let findTag = data.tags.filter((d) => d.includes(searchTag));
     if (findTag.length > 0) return findTag;
