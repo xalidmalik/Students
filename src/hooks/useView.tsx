@@ -17,7 +17,7 @@ export const useView = ({ title, exit = false, inViewOption }: useViewType) => {
       controls.start("animate");
     }
     if (exit && !inView) {
-      controls.start("initial");
+      controls.start("exit");
     }
   }, [controls, exit, inView]);
 
