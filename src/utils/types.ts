@@ -8,4 +8,5 @@ export type StudentType = {
   lastName: string;
   pic: string;
   skill: string;
+  tags: string[];
 };

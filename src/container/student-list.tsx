@@ -1,12 +1,10 @@
 import { StudentCard } from "components/student-card";
-import React from "react";
-import { StudentType } from "utils/types";
+import { useStudent } from "hooks/useStudentContext";
+import React, { memo } from "react";
 
-type StudentListType = {
-  students: StudentType[];
-};
+export const StudentList = memo(() => {
+  const { students } = useStudent();
 
-export const StudentList = ({ students }: StudentListType) => {
   return (
     <main>
       {students.map((data) => (
@@ -14,4 +12,4 @@ export const StudentList = ({ students }: StudentListType) => {
       ))}
     </main>
   );
-};
+});
