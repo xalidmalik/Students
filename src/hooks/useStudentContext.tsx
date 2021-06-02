@@ -6,6 +6,7 @@ const StudentContext =
   createContext<
     | {
         students: StudentType[];
+        result: StudentType[];
         isLoading: boolean;
         error: any;
         setStudents: Dispatch<React.SetStateAction<StudentType[]>>;
