@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchStudents } from "utils/fetch-students";
+import { getAvarage, getFullname } from "utils/helper";
 import { searchName, searchTag } from "utils/search";
 import { StudentType } from "utils/types";
 
@@ -22,7 +23,12 @@ export const useStudentHandler = ({
       .then(({ students }: { students: StudentType[] }) => {
         setStudents(
           students.map((data) => {
-            return { ...data, tags: [] };
+            return {
+              ...data,
+              tags: [],
+              avarage: getAvarage(data.grades),
+              fullName: getFullname(data.firstName, data.lastName),
+            };
           })
         );
         setIsLoading(false);
@@ -32,12 +38,10 @@ export const useStudentHandler = ({
 
   useEffect(() => {
     setIsLoading(true);
-    const Searched = searchName(name, students);
-    const finded = searchTag(tag, Searched);
+    const searched = searchName(name, students);
+    const finded = searchTag(tag, searched);
     setResult(finded);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
+    setIsLoading(false);
   }, [students, name, tag]);
 
   return { students, result, isLoading, error, setStudents };

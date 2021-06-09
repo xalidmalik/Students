@@ -1,5 +1,5 @@
 const url = "https://api.hatchways.io/assessment/students";
 
-export async function fetchStudents() {
+export const fetchStudents = async () => {
   return await fetch(url);
-}
+};

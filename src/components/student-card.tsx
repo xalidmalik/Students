@@ -3,20 +3,16 @@ import { useStudent } from "hooks/useStudentContext";
 import { useView } from "hooks/useView";
 import React, { memo, useState } from "react";
 import { container, highContainer, item } from "utils/animation";
-import { getAvarage, getFullname } from "utils/helper";
 import { StudentType } from "utils/types";
 
 export const StudentCard = memo<StudentType>(
-  ({ firstName, company, email, grades, pic, lastName, skill, tags, id }) => {
+  ({ fullName, company, email, grades, pic, skill, tags, id, avarage }) => {
     const { students, setStudents } = useStudent();
     const { controls, ref } = useView({ exit: true });
     const [expand, setExpand] = useState(false);
     const [tag, setTag] = useState("");
 
-    let fullName: string = getFullname(firstName, lastName);
-    let avarage: number = getAvarage(grades);
-
-    function handleAddTag(key: string, id: string, tag: string) {
+    const handleAddTag = (key: string, id: string, tag: string) => {
       if (key === "Enter") {
         let newArr: StudentType[] = JSON.parse(JSON.stringify(students));
         let finded = newArr.find((data: StudentType) => data.id === id);
@@ -24,7 +20,7 @@ export const StudentCard = memo<StudentType>(
         setStudents([...newArr]);
         setTag("");
       }
-    }
+    };
 
     return (
       <AnimateSharedLayout>
@@ -101,7 +97,7 @@ export const StudentCard = memo<StudentType>(
                       <motion.p
                         variants={item}
                         layout
-                        key={index}
+                        key={`${index}+${data}+${id}`}
                         className="description-item"
                       >{`Test${index + 1}: ${data}%`}</motion.p>
                     ))}
@@ -112,7 +108,7 @@ export const StudentCard = memo<StudentType>(
                   {tags.length > 0 && (
                     <div className="tag-section">
                       {tags?.map((data, index) => (
-                        <span className="tag" key={index}>
+                        <span className="tag" key={`${index}+${data}+${id}`}>
                           {data}
                         </span>
                       ))}
