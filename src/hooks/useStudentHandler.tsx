@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { fetchStudents } from "utils/fetch-students";
 import { getAvarage, getFullname } from "utils/helper";
 import { searchName, searchTag } from "utils/search";
 import { StudentType } from "utils/types";
@@ -15,10 +14,11 @@ export const useStudentHandler = ({
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>();
   const [result, setResult] = useState<StudentType[]>([]);
+  const url = "https://api.hatchways.io/assessment/students";
 
   useEffect(() => {
     setIsLoading(true);
-    fetchStudents()
+    fetch(url)
       .then((response) => response.json())
       .then(({ students }: { students: StudentType[] }) => {
         setStudents(

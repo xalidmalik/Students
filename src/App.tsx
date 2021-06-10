@@ -1,9 +1,10 @@
-import { StudentList } from "container/student-list";
+import { renderStudent } from "components/student-card";
+import { AnimateSharedLayout } from "framer-motion";
 import { useStudent } from "hooks/useStudentContext";
 import React from "react";
 
-function App() {
-  const { name, setName, tag, setTag } = useStudent();
+export const App = () => {
+  const { name, setName, tag, setTag, result } = useStudent();
 
   return (
     <div className="app">
@@ -23,9 +24,9 @@ function App() {
           onChange={(e) => setTag(e.target.value)}
         />
       </div>
-      <StudentList />
+      <main>
+        <AnimateSharedLayout>{result.map(renderStudent)}</AnimateSharedLayout>
+      </main>
     </div>
   );
-}
-
-export default App;
+};
