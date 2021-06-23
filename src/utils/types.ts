@@ -9,4 +9,6 @@ export type StudentType = {
   pic: string;
   skill: string;
   tags: string[];
+  avarage?: number;
+  fullName?: string;
 };

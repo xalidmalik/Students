@@ -1,12 +1,15 @@
+import { App } from "App";
+import { StudentProvider } from "hooks/useStudentContext";
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <StudentProvider>
+      <App />
+    </StudentProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -28,7 +28,12 @@ export const container: Variants = {
       staggerChildren: 0.05,
     },
   },
-  exit: { opacity: 0 },
+  exit: {
+    opacity: 0,
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
 };
 
 export const item: Variants = {
@@ -40,5 +45,11 @@ export const item: Variants = {
       ...spring,
     },
   },
-  exit: { y: -10, opacity: 0 },
+  exit: {
+    y: -10,
+    opacity: 0,
+    transition: {
+      ...spring,
+    },
+  },
 };

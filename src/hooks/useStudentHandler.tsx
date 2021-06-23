@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { fetchStudents } from "utils/fetch-students";
+import { getAvarage, getFullname } from "utils/helper";
 import { searchName, searchTag } from "utils/search";
 import { StudentType } from "utils/types";
+
+const url = "https://api.hatchways.io/assessment/students";
 
 export const useStudentHandler = ({
   tag,
@@ -17,12 +19,17 @@ export const useStudentHandler = ({
 
   useEffect(() => {
     setIsLoading(true);
-    fetchStudents()
+    fetch(url)
       .then((response) => response.json())
       .then(({ students }: { students: StudentType[] }) => {
         setStudents(
           students.map((data) => {
-            return { ...data, tags: [] };
+            return {
+              ...data,
+              tags: [],
+              avarage: getAvarage(data.grades),
+              fullName: getFullname(data.firstName, data.lastName),
+            };
           })
         );
         setIsLoading(false);
@@ -31,12 +38,11 @@ export const useStudentHandler = ({
   }, []);
 
   useEffect(() => {
-    const Searched = searchName(name, students);
-    console.log("name", Searched);
-    const finded = searchTag(tag, Searched);
-    console.log("tag", finded);
-
+    setIsLoading(true);
+    const searched = searchName(name, students);
+    const finded = searchTag(tag, searched);
     setResult(finded);
+    setIsLoading(false);
   }, [students, name, tag]);
 
   return { students, result, isLoading, error, setStudents };
