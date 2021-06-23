@@ -38,11 +38,13 @@ export const useStudentHandler = ({
   }, []);
 
   useEffect(() => {
-    setIsLoading(true);
-    const searched = searchName(name, students);
-    const finded = searchTag(tag, searched);
-    setResult(finded);
-    setIsLoading(false);
+    if (students.length !== 0) {
+      setIsLoading(true);
+      const searched = searchName(name, students);
+      const finded = searchTag(tag, searched);
+      setResult(finded);
+      setIsLoading(false);
+    }
   }, [students, name, tag]);
 
   return { students, result, isLoading, error, setStudents };
