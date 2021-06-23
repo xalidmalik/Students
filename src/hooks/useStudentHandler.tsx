@@ -3,6 +3,8 @@ import { getAvarage, getFullname } from "utils/helper";
 import { searchName, searchTag } from "utils/search";
 import { StudentType } from "utils/types";
 
+const url = "https://api.hatchways.io/assessment/students";
+
 export const useStudentHandler = ({
   tag,
   name,
@@ -14,7 +16,6 @@ export const useStudentHandler = ({
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>();
   const [result, setResult] = useState<StudentType[]>([]);
-  const url = "https://api.hatchways.io/assessment/students";
 
   useEffect(() => {
     setIsLoading(true);
