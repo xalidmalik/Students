@@ -19,7 +19,7 @@ export let searchTag = (tag: string, array: StudentType[]) => {
   let findedItem: StudentType[] = [];
   let trimmedTag = getTrimmedString(tag);
   array.filter((student) => {
-    let joinedTag = student.tags.join("");
+    let joinedTag = student.tags.join("").toLowerCase();
     if (joinedTag.includes(trimmedTag)) {
       findedItem.push(student);
     }

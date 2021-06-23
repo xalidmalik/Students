@@ -6,6 +6,8 @@ import React from "react";
 export const App = () => {
   const { name, setName, tag, setTag, result } = useStudent();
 
+  console.log(result);
+
   return (
     <div className="app">
       <div className="input-container">
